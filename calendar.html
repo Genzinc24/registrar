@@ -1,0 +1,47 @@
+
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Registrar Hub — Calendar</title><link rel="stylesheet" href="assets/css/style.css"/></head>
+<body data-page="calendar">
+<header class="header">
+  <nav class="nav">
+    <div class="brand"><span class="logo"></span> <span>Registrar Hub</span></div>
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="requests.html" class="nav-link">Requests</a>
+    <a href="records.html" class="nav-link">Student Records</a>
+    <a href="forms.html" class="nav-link">Forms</a>
+    <a href="reports.html" class="nav-link">Reports</a>
+    <a href="announcements.html" class="nav-link">Announcements</a>
+    <a href="faq.html" class="nav-link">FAQ</a>
+    <a href="contact.html" class="nav-link">Contact</a>
+    <a href="calendar.html" class="nav-link">Calendar</a>
+    <div class="spacer"></div>
+    <div class="searchbar"><span>🔎</span><input id="globalSearch" type="search" placeholder="Search…"/></div>
+    <button id="themeToggle" class="icon-btn" title="Toggle theme">🌙 Dark</button>
+  </nav>
+</header>
+
+  <main class="container">
+    <div class="grid">
+      <div class="card" style="grid-column: span 6"><h2>Add Deadline</h2>
+        <form id="deadlineForm" class="form-grid">
+          <div class="full"><label>Title</label><input class="input" name="title" required /></div>
+          <div><label>Due Date</label><input class="input" type="date" name="due" required /></div>
+          <div><label>Category</label><input class="input" name="category" placeholder="e.g., Transcripts, Enrollment, Grades" /></div>
+          <div class="full"><button class="btn primary" type="submit">➕ Add</button></div>
+        </form>
+        <p class="meta">Export to .ics to import into Outlook or your calendar app.</p>
+        <button id="exportIcs" class="btn">⬇️ Export all deadlines (.ics)</button>
+      </div>
+      <div class="card" style="grid-column: span 6"><h2>Upcoming Deadlines</h2><div id="deadlineList" class="ann"></div></div>
+    </div>
+  </main>
+  
+<footer class="footer">
+  Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
+</footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body></html>
