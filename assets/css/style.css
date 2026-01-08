@@ -1,5 +1,6 @@
 
 /* Registrar Hub Intranet - Styles */
+.brand .logo { height: 36px; width: 36px; object-fit: contain; margin-right: 8px; vertical-align: middle; }
 :root{ --primary:#0b6efd; --primary-dark:#084ec0; --bg:#f6f7fb; --surface:#ffffff; --text:#1d232a; --muted:#5b6675; --accent:#2fb36d; --warning:#f59e0b; --danger:#dc3545; --border:#e2e8f0; }
 :root.dark{ --bg:#0f141b; --surface:#121820; --text:#e8edf2; --muted:#95a2b3; --border:#1e2630; }
 html, body{height:100%;}
