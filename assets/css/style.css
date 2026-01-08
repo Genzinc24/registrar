@@ -47,10 +47,19 @@ label{font-size:12px; color:var(--muted); margin-bottom:6px; display:block}
 .footer{color:var(--muted); font-size:12px; padding:20px 16px; text-align:center}
 @media (max-width: 900px){ .grid{grid-template-columns:repeat(6,1fr)} }
 @media (max-width: 640px){ .nav{flex-wrap:wrap} .form-grid{grid-template-columns: 1fr} .grid{grid-template-columns:repeat(1,1fr)} }
+/* Remove background/border/shadow for the logo */
 .brand img.logo,
 .brand .logo {
   background: transparent !important;
   background-color: transparent !important;
-  box-shadow: none !important;
   border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  /* sizing (keep) */
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
 }
