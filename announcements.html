@@ -1,40 +1,9 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Registrar Hub — Announcements</title>
-
-  <!-- Use the same main stylesheet as index.html -->
-  <link rel="stylesheet" href="assets/css/style.css"/>
-
-  <!-- Small inline rule to ensure the logo displays/sizes even if stylesheet hasn't loaded yet -->
-  <style>
-    .brand img.logo {
-      height: 36px;
-      width: 36px;
-      object-fit: contain;
-      margin-right: 8px;
-      vertical-align: middle;
-      display: inline-block;
-    }
-    .brand { display: inline-flex; align-items: center; gap: 8px; font-weight:700; }
-    /* Minimal layout fallback so the page is readable if style.css doesn't load */
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; margin: 0; padding: 0; background: #f6f7fb; color:#111; }
-    .nav { display:flex; flex-wrap:wrap; gap:8px; padding:10px 16px; align-items:center; }
-    .spacer { flex:1; }
-    .container { max-width: 1200px; padding: 20px; margin: 0 auto; }
-  </style>
-</head>
+<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Registrar Hub — Announcements</title><link rel="stylesheet" href="assets/css/style.css"/></head>
 <body data-page="announcements">
 <header class="header">
   <nav class="nav">
-    <div class="brand">
-      <!-- Confirmed path: assets/logo/logo.png -->
-      <img src="assets/logo/logo.png" alt="Registrar Hub logo" class="logo" width="36" height="36" />
-      <span>Registrar Hub</span>
-    </div>
-
+    <div class="brand"><span class="logo"></span> <span>Registrar Hub</span></div>
     <a href="index.html" class="nav-link">Home</a>
     <a href="requests.html" class="nav-link">Requests</a>
     <a href="records.html" class="nav-link">Student Records</a>
@@ -44,40 +13,32 @@
     <a href="faq.html" class="nav-link">FAQ</a>
     <a href="contact.html" class="nav-link">Contact</a>
     <a href="calendar.html" class="nav-link">Calendar</a>
-
     <div class="spacer"></div>
-
     <div class="searchbar"><span>🔎</span><input id="globalSearch" type="search" placeholder="Search…"/></div>
     <button id="themeToggle" class="icon-btn" title="Toggle theme">🌙 Dark</button>
   </nav>
 </header>
 
-<main class="container">
-  <div class="grid">
-    <div class="card" style="grid-column: span 6">
-      <h2>Create Announcement</h2>
-      <form id="annForm" class="form-grid">
-        <div class="full"><label>Title</label><input class="input" name="title" required /></div>
-        <div><label>Date</label><input class="input" type="date" name="date" /></div>
-        <div class="full"><label>Message</label><textarea name="body" rows="4" required></textarea></div>
-        <div class="full"><button class="btn primary" type="submit">📢 Publish</button></div>
-      </form>
+  <main class="container">
+    <div class="grid">
+      <div class="card" style="grid-column: span 6"><h2>Create Announcement</h2>
+        <form id="annForm" class="form-grid">
+          <div class="full"><label>Title</label><input class="input" name="title" required /></div>
+          <div><label>Date</label><input class="input" type="date" name="date" /></div>
+          <div class="full"><label>Message</label><textarea name="body" rows="4" required></textarea></div>
+          <div class="full"><button class="btn primary" type="submit">📢 Publish</button></div>
+        </form>
+      </div>
+      <div class="card" style="grid-column: span 6"><h2>Announcements</h2><div id="annList" class="ann"></div></div>
     </div>
-
-    <div class="card" style="grid-column: span 6">
-      <h2>Announcements</h2>
-      <div id="annList" class="ann"></div>
-    </div>
-  </div>
-</main>
-
+  </main>
+  
 <footer class="footer">
   Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
 </footer>
 
-<script src="assets/js/config.js"></script>
-<script src="assets/js/data.js"></script>
-<script src="assets/js/app.js"></script>
-<script src="assets/js/auth.js"></script>
-</body>
-</html>
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/auth.js"></script>
+</body></html>
