@@ -1,10 +1,33 @@
-
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Registrar Hub — Home</title><link rel="stylesheet" href="assets/css/style.css"/></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Registrar Hub — Home</title>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <!-- Small inline rule to ensure the logo displays and sizes nicely.
+       You can move this into your stylesheet (assets/css/style.css) if you prefer. -->
+  <style>
+    .brand img.logo {
+      height: 36px;
+      width: 36px;
+      object-fit: contain;
+      margin-right: 8px;
+      vertical-align: middle;
+      display: inline-block;
+    }
+    /* Optional: keep brand text vertically centered */
+    .brand { display: inline-flex; align-items: center; gap: 8px; }
+  </style>
+</head>
 <body data-page="home">
 <header class="header">
   <nav class="nav">
-    <div class="brand"> <img src="assets/img/logo/logo.png" alt="Registrar Hub logo" class="logo" /> <span>Registrar Hub</span> </div>
+    <div class="brand">
+      <!-- Updated src to match the path you used -->
+      <img src="assets/logo/logo.png" alt="Registrar Hub logo" class="logo" width="36" height="36" />
+      <span>Registrar Hub</span>
+    </div>
     <a href="index.html" class="nav-link">Home</a>
     <a href="requests.html" class="nav-link">Requests</a>
     <a href="records.html" class="nav-link">Student Records</a>
@@ -20,26 +43,27 @@
   </nav>
 </header>
 
-  <main class="container">
-    <div class="grid">
-      <div class="card" style="grid-column: span 8"><h2>Dashboard</h2>
-        <div class="grid">
-          <div class="card" style="grid-column: span 4"><div class="kpi"><span>📨</span><div><div class="meta">Total Requests</div><div id="kpiTotal" class="value">0</div></div></div></div>
-          <div class="card" style="grid-column: span 4"><div class="kpi"><span>⏳</span><div><div class="meta">Pending</div><div id="kpiPending" class="value">0</div></div></div></div>
-          <div class="card" style="grid-column: span 4"><div class="kpi"><span>✅</span><div><div class="meta">Completed</div><div id="kpiCompleted" class="value">0</div></div></div></div>
-        </div>
+<main class="container">
+  <div class="grid">
+    <div class="card" style="grid-column: span 8"><h2>Dashboard</h2>
+      <div class="grid">
+        <div class="card" style="grid-column: span 4"><div class="kpi"><span>📨</span><div><div class="meta">Total Requests</div><div id="kpiTotal" class="value">0</div></div></div></div>
+        <div class="card" style="grid-column: span 4"><div class="kpi"><span>⏳</span><div><div class="meta">Pending</div><div id="kpiPending" class="value">0</div></div></div></div>
+        <div class="card" style="grid-column: span 4"><div class="kpi"><span>✅</span><div><div class="meta">Completed</div><div id="kpiCompleted" class="value">0</div></div></div></div>
       </div>
-      <div class="card" style="grid-column: span 4"><h2>Quick Links</h2><div id="quickLinks" style="display:flex; flex-wrap:wrap; gap:8px"></div></div>
-      <div class="card" style="grid-column: span 12"><h2>Announcements</h2><div id="homeAnnouncements" class="ann"></div></div>
     </div>
-  </main>
+    <div class="card" style="grid-column: span 4"><h2>Quick Links</h2><div id="quickLinks" style="display:flex; flex-wrap:wrap; gap:8px"></div></div>
+    <div class="card" style="grid-column: span 12"><h2>Announcements</h2><div id="homeAnnouncements" class="ann"></div></div>
+  </div>
+</main>
   
 <footer class="footer">
   Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
 </footer>
 
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/auth.js"></script>
-</body></html>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/auth.js"></script>
+</body>
+</html>
