@@ -1,10 +1,19 @@
-
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Registrar Hub — Announcements</title><link rel="stylesheet" href="assets/css/style.css"/></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Registrar Hub — Announcements</title>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+</head>
 <body data-page="announcements">
 <header class="header">
   <nav class="nav">
-    <div class="brand"><span class="logo"></span> <span>Registrar Hub</span></div>
+    <div class="brand">
+      <!-- Logo image added so it always displays on this page -->
+      <img src="assets/logo/logo.png" alt="Registrar Hub logo" class="logo" style="height:28px; width:auto; margin-right:8px; vertical-align:middle;" />
+      <span>Registrar Hub</span>
+    </div>
     <a href="index.html" class="nav-link">Home</a>
     <a href="requests.html" class="nav-link">Requests</a>
     <a href="records.html" class="nav-link">Student Records</a>
@@ -20,26 +29,32 @@
   </nav>
 </header>
 
-  <main class="container">
-    <div class="grid">
-      <div class="card" style="grid-column: span 6"><h2>Create Announcement</h2>
-        <form id="annForm" class="form-grid">
-          <div class="full"><label>Title</label><input class="input" name="title" required /></div>
-          <div><label>Date</label><input class="input" type="date" name="date" /></div>
-          <div class="full"><label>Message</label><textarea name="body" rows="4" required></textarea></div>
-          <div class="full"><button class="btn primary" type="submit">📢 Publish</button></div>
-        </form>
-      </div>
-      <div class="card" style="grid-column: span 6"><h2>Announcements</h2><div id="annList" class="ann"></div></div>
+<main class="container">
+  <div class="grid">
+    <div class="card" style="grid-column: span 6">
+      <h2>Create Announcement</h2>
+      <form id="annForm" class="form-grid">
+        <div class="full"><label>Title</label><input class="input" name="title" required /></div>
+        <div><label>Date</label><input class="input" type="date" name="date" /></div>
+        <div class="full"><label>Message</label><textarea name="body" rows="4" required></textarea></div>
+        <div class="full"><button class="btn primary" type="submit">📢 Publish</button></div>
+      </form>
     </div>
-  </main>
-  
+
+    <div class="card" style="grid-column: span 6">
+      <h2>Announcements</h2>
+      <div id="annList" class="ann"></div>
+    </div>
+  </div>
+</main>
+
 <footer class="footer">
   Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
 </footer>
 
-  <script src="assets/js/config.js"></script>
-  <script src="assets/js/data.js"></script>
-  <script src="assets/js/app.js"></script>
-  <script src="assets/js/auth.js"></script>
-</body></html>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/auth.js"></script>
+</body>
+</html>
