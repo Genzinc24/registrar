@@ -50,6 +50,167 @@
   <div class="calendar-legend">
     <span class="legend-dot legend-dot--deadline"></span> Deadline
   </div>
+  
+<script>
+(() => {
+  // === Configuration ===
+  const calendarEl = document.getElementById('calendar');
+  const titleEl = document.getElementById('calTitle');
+  const btnPrev = document.getElementById('calPrev');
+  const btnNext = document.getElementById('calNext');
+  const btnToday = document.getElementById('calToday');
+
+  // Example events; replace with your real deadlines data.
+  // Each event: { title, date: 'YYYY-MM-DD', category?: 'Grades|Enrollment|Transcripts' }
+  const events = [
+    { title: 'Enrollment cutoff', date: '2026-01-15', category: 'Enrollment' },
+    { title: 'Submit grades',     date: '2026-01-22', category: 'Grades' },
+    { title: 'Transcript release',date: '2026-01-29', category: 'Transcripts' },
+  ];
+
+  // === Utility functions ===
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const toISODate = (y, m, d) => `${y}-${pad2(m)}-${pad2(d)}`;
+  const isSameDate = (y, m, d, dt = new Date()) =>
+    dt.getFullYear() === y && (dt.getMonth()+1) === m && dt.getDate() === d;
+
+  const getMonthMatrix = (year, month) => {
+    // month is 1-12
+    const firstOfMonth = new Date(year, month - 1, 1);
+    const startDay = (firstOfMonth.getDay() + 6) % 7; // make Monday=0; adjust if you want Sunday=0
+    const daysInMonth = new Date(year, month, 0).getDate();
+    const daysInPrevMonth = new Date(year, month - 1, 0).getDate();
+
+    // Build 6x7 matrix (consistent height)
+    const cells = [];
+    // Leading days from previous month
+    for (let i = 0; i < startDay; i++) {
+      const d = daysInPrevMonth - startDay + 1 + i;
+      const prev = new Date(year, month - 2, d);
+      cells.push({ y: prev.getFullYear(), m: prev.getMonth()+1, d, muted: true });
+    }
+    // Current month days
+    for (let d = 1; d <= daysInMonth; d++) {
+      cells.push({ y: year, m: month, d, muted: false });
+    }
+    // Trailing days from next month
+    const total = 42; // 6 weeks * 7 days
+    let nextD = 1;
+    while (cells.length < total) {
+      const next = new Date(year, month, nextD);
+      cells.push({ y: next.getFullYear(), m: next.getMonth()+1, d: nextD++, muted: true });
+    }
+    return cells;
+  };
+
+  const groupEventsByDate = (list) => {
+    const map = new Map();
+    for (const ev of list) {
+      const key = ev.date;
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(ev);
+    }
+    return map;
+  };
+
+  // === Rendering ===
+  let viewDate = new Date(); // current month
+
+  const render = () => {
+    const y = viewDate.getFullYear();
+    const m = viewDate.getMonth() + 1;
+
+    titleEl.textContent = new Intl.DateTimeFormat(undefined, {
+      month: 'long', year: 'numeric'
+    }).format(viewDate);
+
+    calendarEl.innerHTML = '';
+
+    // Weekday headers (Mon–Sun); change as needed
+    const weekdays = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    for (const wd of weekdays) {
+      const dow = document.createElement('div');
+      dow.className = 'calendar__dow';
+      dow.textContent = wd;
+      dow.setAttribute('role', 'columnheader');
+      calendarEl.appendChild(dow);
+    }
+
+    const cells = getMonthMatrix(y, m);
+    const evMap = groupEventsByDate(events);
+
+    for (const cell of cells) {
+      const cellEl = document.createElement('div');
+      cellEl.className = 'calendar__day' +
+        (cell.muted ? ' calendar__day--muted' : '') +
+        (isSameDate(cell.y, cell.m, cell.d) ? ' calendar__day--today' : '');
+
+      // Date label
+      const dateEl = document.createElement('div');
+      dateEl.className = 'calendar__date';
+      dateEl.textContent = cell.d;
+      cellEl.appendChild(dateEl);
+
+      // Events
+      const key = toISODate(cell.y, cell.m, cell.d);
+      const list = evMap.get(key) || [];
+      if (list.length) {
+        const evsContainer = document.createElement('div');
+        evsContainer.className = 'calendar__events';
+        list.forEach(ev => {
+          const item = document.createElement('div');
+          item.className = 'calendar__event';
+          const dot = document.createElement('span');
+          dot.className = 'calendar__event-dot';
+          item.appendChild(dot);
+
+          // Optional category badge
+          const label = document.createElement('span');
+          label.textContent = ev.title + (ev.category ? ` — ${ev.category}` : '');
+          item.appendChild(label);
+          evsContainer.appendChild(item);
+        });
+        cellEl.appendChild(evsContainer);
+      }
+
+      // Accessibility
+      cellEl.tabIndex = 0; // keyboard focus
+      cellEl.setAttribute('role', 'gridcell');
+      cellEl.setAttribute('aria-label', new Intl.DateTimeFormat(undefined, {
+        weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+      }).format(new Date(cell.y, cell.m - 1, cell.d)));
+
+      calendarEl.appendChild(cellEl);
+    }
+  };
+
+  // === Navigation ===
+  btnPrev.addEventListener('click', () => {
+    viewDate.setMonth(viewDate.getMonth() - 1);
+    render();
+  });
+  btnNext.addEventListener('click', () => {
+    viewDate.setMonth(viewDate.getMonth() + 1);
+    render();
+  });
+  btnToday.addEventListener('click', () => {
+    viewDate = new Date();
+    render();
+  });
+
+  // Keyboard shortcuts: ←/→ for prev/next, T for today
+  window.addEventListener('keydown', (e) => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowLeft') { btnPrev.click(); }
+    if (e.key === 'ArrowRight') { btnNext.click(); }
+    if (e.key.toLowerCase() === 't') { btnToday.click(); }
+  });
+
+  // Initial render
+  render();
+})();
+</script>
+
 </section>
 <footer class="footer">
   Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
