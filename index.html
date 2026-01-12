@@ -33,6 +33,24 @@
   </div>
 </main>
   
+  <!-- Calendar Page Content -->
+<section class="calendar-section">
+  <div class="calendar-toolbar">
+    <button class="cal-btn" id="calPrev" aria-label="Previous month">‹</button>
+    <button class="cal-btn" id="calToday" aria-label="Go to this month">Today</button>
+    <button class="cal-btn" id="calNext" aria-label="Next month">›</button>
+    <h2 id="calTitle" class="cal-title" aria-live="polite"></h2>
+  </div>
+
+  <div class="calendar" id="calendar" role="grid" aria-label="Monthly Calendar">
+    <!-- JS will inject the month grid here -->
+  </div>
+
+  <!-- Optional small legend -->
+  <div class="calendar-legend">
+    <span class="legend-dot legend-dot--deadline"></span> Deadline
+  </div>
+</section>
 <footer class="footer">
   Registrar Hub Intranet • © 2026 • For internal use only. <span class="meta">Prototype — not connected to production data.</span>
 </footer>
